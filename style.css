@@ -1,0 +1,15 @@
+.weather-days {
+    background-color:pink;
+    border: solid gray 2px;
+    height: auto;
+    width: 120px;
+    margin: 10px;
+    float:left;
+    padding: 10px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
