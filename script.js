@@ -34,10 +34,11 @@ $("button").on("click", function () {
         function generateForecast(day, startTime, endTime) {
             maxTemp = [];
             avgHum = 0;
+            weatherStatus = response.list[startTime + 4].weather[0].main;
             html =
                 `<div class="weather-days">
-            <h5 id="day${day}">Date</h5>
-            <h5>ICON</h5>
+            <h5 id="day${day}"></h5>
+            <i id="day${day}-icon"></i>
             <p id="day${day}-temp">Temp: </p>
             <p id="day${day}-hum">Humidity: </p>
             </div>`;
@@ -51,6 +52,9 @@ $("button").on("click", function () {
             $(`#day${day}-temp`).text("Temperature " + Math.max.apply(Math, maxTemp));
             avgHum = (avgHum / 8);
             $(`#day${day}-hum`).text("Humidity " + avgHum);
+            $(`#day${day}`).text(moment().add(day, 'days').format('MMMM Do YYYY'));
+            determineIcon(weatherStatus, day);
+
 
         }
 
@@ -60,6 +64,11 @@ $("button").on("click", function () {
         generateForecast(4, 26, 33);
         generateForecast(5, 34, 40);
 
+        function determineIcon(weatherStatus, day) {
+            if (weatherStatus == "Clear") {
+                $(`#day${day}-icon`).addClass("fas fa-sun");
+            }
+        }
 
         // function day2InfoFind() {
         //     for (i = 1; i < 9; i++) {
