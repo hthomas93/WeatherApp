@@ -35,6 +35,7 @@ $("button").on("click", function () {
             maxTemp = [];
             avgHum = 0;
             weatherStatus = response.list[startTime + 4].weather[0].main;
+            console.log(weatherStatus);
             html =
                 `<div class="weather-days">
             <h5 id="day${day}"></h5>
@@ -68,6 +69,25 @@ $("button").on("click", function () {
             if (weatherStatus == "Clear") {
                 $(`#day${day}-icon`).addClass("fas fa-sun");
             }
+            else if (weatherStatus == "Thunderstorm") {
+                $(`#day${day}-icon`).addClass("fas fa-bolt");
+            }
+            else if (weatherStatus == "Drizzle") {
+                $(`#day${day}-icon`).addClass("fas fa-cloud-rain");
+            }
+            else if (weatherStatus == "Rain") {
+                $(`#day${day}-icon`).addClass("fas fa-cloud-showers-heavy");
+            }
+            else if (weatherStatus == "Snow") {
+                $(`#day${day}-icon`).addClass("fas fa-snowflake");
+            }
+            else if (weatherStatus == "Clouds") {
+                $(`#day${day}-icon`).addClass("fas fa-cloud");
+            }
+            else {
+                $(`#day${day}-icon`).addClass("fas fa-water");
+            }
+
         }
 
         // function day2InfoFind() {
