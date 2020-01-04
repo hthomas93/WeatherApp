@@ -5,6 +5,7 @@ var today = (moment().format('MMMM Do YYYY'))
 $("#current-date").text(today);
 var citySubmitLat = 0;
 var citySubmitLong = 0;
+var cityCount = 0;
 
 
 
@@ -14,8 +15,12 @@ var citySubmitLong = 0;
 // From this object, populate the fields in the main card
 
 $("button").on("click", function () {
+    $(".weather-days").remove();
     event.preventDefault();
     var citySubmit = $("#city-search").val();
+    // save City Submit to localstorage
+    citySearch();
+    // make a new div and add it below the search bar
     var todayUV = 0;
     console.log(citySubmit);
 
@@ -30,8 +35,8 @@ $("button").on("click", function () {
     }).then(function (response) {
         console.log(response);
         $("#city-name-current").text(citySubmit);
-        $("#temperature-main").text("Temperature " + Math.floor(response.main.temp));
-        $("#humidity-main").text("Humidity: " + response.main.humidity);
+        $("#temperature-main").text("Temperature " + Math.floor(response.main.temp) + "°F");
+        $("#humidity-main").text("Humidity: " + response.main.humidity + "%");
         $("#windspeed-main").text("Wind-speed: " + response.wind.speed + " mph");
         citySubmitLat = response.coord.lat;
         citySubmitLon = response.coord.lon;
@@ -115,23 +120,9 @@ $("button").on("click", function () {
         });
     })
 
+    function citySearch() {
+        localStorage.setItem(`city${cityCount}`, citySubmit);
+        cityCount++;
+    }
 
 })
-
-
-
-
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-// }).then(function (response) {
-//     console.log(queryURL);
-//     var results = response;
-//     console.log(results);
-//     console.log(temperature);
-//     $("#city-name-current").text(citySubmit);
-//     $("#temperature-main").text(Math.floor(temperature));
-//     $("#humidity-main").text("Humidity: " + response.main.humidity);
-//     $("#windspeed-main").text("Wind-speed: " + results.wind.speed + " mph");
-
-// })
