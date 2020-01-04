@@ -14,3 +14,13 @@
     display: table;
   }
 
+.search-list {
+    background-color:lightblue;
+    border: 2px solid gray;
+    text-align: center;
+    margin: 5px;
+}
+
+#recent-searches {
+    margin: 20px;
+}

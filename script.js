@@ -8,18 +8,12 @@ var citySubmitLong = 0;
 var cityCount = 0;
 
 
-
-// When the submit button is clicked
-// A query is sent to the OWM api to grab information about the current weather
-// An object is returned    
-// From this object, populate the fields in the main card
-
 $("button").on("click", function () {
     $(".weather-days").remove();
     event.preventDefault();
     var citySubmit = $("#city-search").val();
     // save City Submit to localstorage
-    citySearch();
+    citySearch(citySubmit);
     // make a new div and add it below the search bar
     var todayUV = 0;
     console.log(citySubmit);
@@ -120,9 +114,14 @@ $("button").on("click", function () {
         });
     })
 
-    function citySearch() {
-        localStorage.setItem(`city${cityCount}`, citySubmit);
+    function citySearch(city) {
+        localStorage.setItem(`city${cityCount}`, city);
         cityCount++;
+        $("#recent-searches").prepend(`<div class = "search-list">${city}</div`);
     }
 
 })
+
+//TO-DO
+//Have the recent searches persist after refreshing the page
+// 
