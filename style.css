@@ -2,17 +2,13 @@
     background-color:pink;
     border: solid gray 2px;
     height: auto;
-    width: 120px;
-    margin: 10px;
+    width: 130px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     float:left;
     padding: 10px;
+    display:block;
 }
-
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
 
 .search-list {
     background-color:lightblue;
@@ -30,6 +26,14 @@
     position: relative;
 }
 
-.forecast-row {
-    background-color:gray;
+body {
+    height: 750px;
+    margin: 0;
+}
+
+#forecast-divs {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }

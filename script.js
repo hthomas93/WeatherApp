@@ -6,12 +6,21 @@ $("#current-date").text(today);
 var citySubmitLat = 0;
 var citySubmitLong = 0;
 var recentSearchList = $("#recent-searches");
+var clearButton = $("#clear-btn");
 var citySearch = $("#city-search");
 var cityList = [];
 
 init();
 
-$("button").on("click", function (event) {
+// $("#clear-btn").on("click", function (event) {
+//     event.preventDefault();
+//     var storedCities = JSON.parse(localStorage.getItem("cityList"));
+//     storedCities.forEach(city => {
+//         localStorage.setItem("cityList", "");
+//     });
+// })
+
+$("#search").on("click", function (event) {
     $(".weather-days").remove();
     $(".search-list").remove();
     event.preventDefault();
@@ -66,7 +75,7 @@ $("button").on("click", function (event) {
             $(`#day${day}-temp`).text("Temperature " + Math.max.apply(Math, maxTemp));
             avgHum = (avgHum / 8);
             $(`#day${day}-hum`).text("Humidity " + avgHum);
-            $(`#day${day}`).text(moment().add(day, 'days').format('MMMM Do YYYY'));
+            $(`#day${day}`).text(moment().add(day, 'days').format("L"));
             determineIcon(weatherStatus, day);
 
 
@@ -156,14 +165,11 @@ function citySearches(city) {
     renderCities();
 };
 
-//TO-DO
-//Have the recent searches persist after refreshing the page
 
+
+//TO-DO
 //Make the app not look like shit
 
 //Write the README, make it 
 
-// $("#recent-searches").prepend(`<div class = "search-list">${city}</div`);
-
-// every time a button is clicked
-// 
+//Implement clear button feature
