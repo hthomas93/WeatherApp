@@ -19,8 +19,17 @@
     border: 2px solid gray;
     text-align: center;
     margin: 5px;
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    position: relative;
 }
 
 #recent-searches {
     margin: 20px;
+    position: relative;
+}
+
+.forecast-row {
+    background-color:gray;
 }

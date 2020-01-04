@@ -5,19 +5,19 @@ var today = (moment().format('MMMM Do YYYY'))
 $("#current-date").text(today);
 var citySubmitLat = 0;
 var citySubmitLong = 0;
-var cityCount = 0;
+var recentSearchList = $("#recent-searches");
+var citySearch = $("#city-search");
+var cityList = [];
 
+init();
 
-$("button").on("click", function () {
+$("button").on("click", function (event) {
     $(".weather-days").remove();
+    $(".search-list").remove();
     event.preventDefault();
     var citySubmit = $("#city-search").val();
-    // save City Submit to localstorage
-    citySearch(citySubmit);
-    // make a new div and add it below the search bar
-    var todayUV = 0;
     console.log(citySubmit);
-
+    citySearches(citySubmit);
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySubmit + "&appid=83ec25aafa25787879adb49e8ad70c00&units=imperial";
 
     var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySubmit + "&appid=83ec25aafa25787879adb49e8ad70c00&units=imperial";
@@ -114,14 +114,56 @@ $("button").on("click", function () {
         });
     })
 
-    function citySearch(city) {
-        localStorage.setItem(`city${cityCount}`, city);
-        cityCount++;
-        $("#recent-searches").prepend(`<div class = "search-list">${city}</div`);
+})
+
+function init() {
+    var storedCities = JSON.parse(localStorage.getItem("cityList"));
+    if (storedCities !== null) {
+        cityList = storedCities;
+    }
+    renderCities();
+}
+
+function renderCities() {
+    recentSearchList.innerHTML = "";
+
+    // Render a new city for each cityList element
+    for (var i = 0; i < cityList.length; i++) {
+        var city = cityList[i];
+        var btn = $(`<btn class = 'btn search-list' id = city${i}>${city}</button>`);
+        $(`#city${i}`).val(city);
+        $("#recent-searches").prepend(btn);
+        $("#recent-searches").prepend("<br>");
+    }
+}
+
+function storeCity() {
+    // Stringify and set "todos" key in localStorage to todos array
+    localStorage.setItem("cityList", JSON.stringify(cityList));
+}
+
+function citySearches(city) {
+    // Return from function early if submitted todoText is blank
+    if (citySearch === "") {
+        return;
     }
 
-})
+    cityList.push(city);
+    $("#city-search").val("");
+
+    // Store updated todos in localStorage, re-render the list
+    storeCity();
+    renderCities();
+};
 
 //TO-DO
 //Have the recent searches persist after refreshing the page
+
+//Make the app not look like shit
+
+//Write the README, make it 
+
+// $("#recent-searches").prepend(`<div class = "search-list">${city}</div`);
+
+// every time a button is clicked
 // 
