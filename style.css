@@ -2,7 +2,7 @@
     background-color:pink;
     border: solid gray 2px;
     height: auto;
-    width: 130px;
+    width: 140px;
     margin-right: 10px;
     margin-bottom: 10px;
     float:left;
@@ -29,6 +29,7 @@
 body {
     height: 750px;
     margin: 0;
+    font-family: 'Raleway', sans-serif;
 }
 
 #forecast-divs {
@@ -36,4 +37,16 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
+}
+
+.navbar-brand {
+    margin:auto;
+    font-size: 48px;
+    font-weight:800;
+    font-style:italic;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom:20px;
 }
