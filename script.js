@@ -12,13 +12,9 @@ var cityList = [];
 
 init();
 
-// $("#clear-btn").on("click", function (event) {
-//     event.preventDefault();
-//     var storedCities = JSON.parse(localStorage.getItem("cityList"));
-//     storedCities.forEach(city => {
-//         localStorage.setItem("cityList", "");
-//     });
-// })
+$("#clear-btn").on("click", function (event) {
+    localStorage.clear();
+})
 
 $("#search").on("click", function (event) {
     $(".weather-days").remove();
